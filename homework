@@ -1,0 +1,23 @@
+def find_min_index(lst, start_index):
+    """
+    Helper function to find the index of the minimum value in a list starting from a given index.
+    """
+    min_index = start_index
+    for i in range(start_index + 1, len(lst)):
+        if lst[i] < lst[min_index]:
+            min_index = i
+    return min_index
+
+def recursive_sort(lst, start_index=0):
+    """
+    Recursively sort the list in ascending order.
+    """
+    if start_index < len(lst) - 1:
+        min_index = find_min_index(lst, start_index)
+        lst[start_index], lst[min_index] = lst[min_index], lst[start_index]  # Swap the values
+        recursive_sort(lst, start_index + 1)  # Recursively sort the remaining part of the list
+
+# Test the function
+numbers = [33, 67, 8, 13, 54, 119, 3, 84, 25, 41]
+recursive_sort(numbers)
+print("Sorted list:", numbers)
